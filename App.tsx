@@ -28,6 +28,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ExploreIcon from './icons/ExploreIcon';
 import RestaurantIcon from './icons/RestaurantIcon';
 import ProfileIcon from './icons/ProfileIcon';
+import {Provider} from 'react-redux';
+import {store} from './store/root.store';
 
 export type BottomTabParams = {
   ExploreStack: NavigatorScreenParams<ExploreStackParams>;
@@ -87,46 +89,48 @@ const ExplorecreenStack = () => {
 
 function App(): JSX.Element {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="ExploreStack"
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: '#e67a15',
-          tabBarInactiveTintColor: 'gray',
-        }}>
-        <Tab.Screen
-          name="ExploreStack"
-          component={ExplorecreenStack}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <ExploreIcon color={color} size={size} />
-            ),
-            tabBarLabel: 'Explore',
-          }}
-        />
-        <Tab.Screen
-          name="RestaurantsStack"
-          component={RestaurantScreenStack}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <RestaurantIcon color={color} size={size} />
-            ),
-            tabBarLabel: 'Restaurants',
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <ProfileIcon color={color} size={size} />
-            ),
-            tabBarLabel: 'Profile',
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator
+          initialRouteName="ExploreStack"
+          screenOptions={{
+            headerShown: false,
+            tabBarActiveTintColor: '#e67a15',
+            tabBarInactiveTintColor: 'gray',
+          }}>
+          <Tab.Screen
+            name="ExploreStack"
+            component={ExplorecreenStack}
+            options={{
+              tabBarIcon: ({color, size}) => (
+                <ExploreIcon color={color} size={size} />
+              ),
+              tabBarLabel: 'Explore',
+            }}
+          />
+          <Tab.Screen
+            name="RestaurantsStack"
+            component={RestaurantScreenStack}
+            options={{
+              tabBarIcon: ({color, size}) => (
+                <RestaurantIcon color={color} size={size} />
+              ),
+              tabBarLabel: 'Restaurants',
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{
+              tabBarIcon: ({color, size}) => (
+                <ProfileIcon color={color} size={size} />
+              ),
+              tabBarLabel: 'Profile',
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

@@ -74,11 +74,13 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     marginTop: 16,
+    color: 'black',
   },
   screenTitle: {
     fontSize: 24,
     marginTop: 8,
     fontWeight: 'bold',
+    color: 'black',
   },
 });
 
